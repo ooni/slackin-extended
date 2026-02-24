@@ -1,4 +1,4 @@
-FROM node:16-alpine
+FROM node:lts-alpine
 ADD . /srv/www
 WORKDIR /srv/www
 RUN npm install --unsafe-perm
