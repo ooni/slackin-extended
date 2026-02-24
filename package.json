@@ -17,15 +17,15 @@
   "dependencies": {
     "args": "^5.0.3",
     "autoprefixer": "^10.4.14",
-    "body-parser": "^1.20.0",
+    "body-parser": "^2.2.2",
     "compression": "^1.7.4",
     "cors": "^2.8.5",
     "cross-env": "^7.0.3",
     "debug": "^4.3.4",
-    "dotenv": "^16.0.3",
+    "dotenv": "^17.3.1",
     "email-regex": "^4.0.0",
     "errorhandler": "^1.5.1",
-    "express": "^4.18.2",
+    "express": "^5.2.1",
     "hostenv": "3.13.0",
     "micromatch": "^4.0.5",
     "morgan": "^1.10.0",
@@ -37,18 +37,18 @@
     "sass": "^1.60.0",
     "serve-favicon": "^2.5.0",
     "socket.io": "^4.6.1",
-    "superagent": "^7.1.1",
+    "superagent": "^10.3.0",
     "tinycolor2": "^1.6.0"
   },
   "devDependencies": {
-    "lockfile-lint": "^4.10.1",
+    "lockfile-lint": "^5.0.0",
     "mocha": "^10.0.0",
     "nock": "^13.3.0",
     "nodemon": "^2.0.19",
-    "stylelint": "^14.16.1",
-    "stylelint-config-twbs-bootstrap": "^5.0.0",
-    "supertest": "^6.2.4",
-    "xo": "^0.48.0"
+    "stylelint": "^16",
+    "stylelint-config-twbs-bootstrap": "^16.1.0",
+    "supertest": "^7.2.2",
+    "xo": "^1.2.3"
   },
   "engines": {
     "node": "24.x"
@@ -60,7 +60,7 @@
     "lint:js": "xo",
     "lint:lockfile": "lockfile-lint --allowed-hosts npm --allowed-schemes https: --empty-hostname false --type npm --path package-lock.json",
     "mocha": "mocha --require ./test/setup --exit",
-    "test": "npm-run-all build lint mocha",
+    "test": "xo && npm-run-all build lint mocha",
     "build": "npm-run-all build:*",
     "build:sass": "sass --style compressed --no-source-map --no-error-css scss/:assets/",
     "build:prefix": "postcss --use autoprefixer --no-map --replace \"assets/*.css\" \"!assets/iframe-button.css\"",
@@ -92,6 +92,7 @@
         "before"
       ],
       "spaced-comment": "off",
+      "unicorn/expiring-todo-comments": "off",
       "unicorn/explicit-length-check": "off",
       "unicorn/no-array-for-each": "off",
       "unicorn/numeric-separators-style": "off",

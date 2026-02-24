@@ -49,7 +49,7 @@ describe('slackin', () => {
         org: 'myorg',
       };
 
-      // TODO simplify mocking
+      // TODO simplify mocking.
       nock(`https://${opts.org}.slack.com`)
         .post('/api/users.admin.invite')
         .reply(200, { ok: true });
@@ -73,7 +73,7 @@ describe('slackin', () => {
         org: 'myorg',
       };
 
-      // TODO simplify mocking
+      // TODO simplify mocking.
       nock(`https://${opts.org}.slack.com`)
         .post('/api/users.admin.invite')
         .reply(200, {
