@@ -30,7 +30,7 @@ const xoConfig = [
       'unicorn/numeric-separators-style': 'off',
       'unicorn/prefer-module': 'off',
       'unicorn/prevent-abbreviations': 'off',
-      'wrap-iife': [
+      '@stylistic/wrap-iife': [
         'error',
         'outside',
       ],

@@ -239,4 +239,4 @@
 
   var found = search();
   if (!found) setTimeout(search, 5000);
-}())
+}());
