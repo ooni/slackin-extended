@@ -3,7 +3,7 @@ const xoConfig = [
   {
     space: true,
     rules: {
-      'arrow-parens': [
+      '@stylistic/arrow-parens': [
         'error',
         'always',
       ],
@@ -14,8 +14,8 @@ const xoConfig = [
         'error',
         'multi-line',
       ],
-      'import/extensions': 'off',
-      'object-curly-spacing': [
+      'import-x/extensions': 'off',
+      '@stylistic/object-curly-spacing': [
         'error',
         'always',
       ],
