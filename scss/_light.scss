@@ -25,19 +25,19 @@ html.theme-light {
     // $color-text:
     $foreground,
     // $color-plus-sign:
-    color.adjust($foreground, $lightness: 80),
+    color.adjust($foreground, $lightness: 80%),
     // $color-footer:
-    color.adjust($foreground, $lightness: 80),
+    color.adjust($foreground, $lightness: 80%),
     // $color-footer-link:
-    color.adjust($foreground, $lightness: 60),
+    color.adjust($foreground, $lightness: 60%),
     // $color-signin
     $foreground,
     // $color-signin-link:
     $accent,
     // $color-coc:
-    color.adjust($foreground, $lightness: 40),
+    color.adjust($foreground, $lightness: 40%),
     // $color-coc-link:
-    color.adjust($foreground, $lightness: 40),
+    color.adjust($foreground, $lightness: 40%),
     // $color-button-text:
     $button-text,
     // $color-button-background:
@@ -53,7 +53,7 @@ html.theme-light {
     // $color-button-pressed-text:
     $button-text,
     // $color-button-pressed-background:
-    color.adjust($accent, $lightness: -15),
+    color.adjust($accent, $lightness: -15%),
     // $color-button-disabled-text:
     $button-text-disabled,
     // $color-button-disabled-background:
@@ -63,12 +63,12 @@ html.theme-light {
     // $color-users-total:
     $foreground,
     // $color-input-text:
-    color.adjust($foreground, $lightness: 60),
+    color.adjust($foreground, $lightness: 60%),
     // $color-input-border:
-    color.adjust($foreground, $lightness: 80),
+    color.adjust($foreground, $lightness: 80%),
     // $color-input-focused-text:
-    color.adjust($foreground, $lightness: 40),
+    color.adjust($foreground, $lightness: 40%),
     // $color-input-focused-border:
-    color.adjust($foreground, $lightness: 60)
+    color.adjust($foreground, $lightness: 60%)
   );
 }

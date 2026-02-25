@@ -12,10 +12,14 @@ html.theme-dark {
   $button-text: #eee;
   $button-text-disabled: #666;
 
-  $accent: color.adjust(#e01563, $lightness: -15);
-  $success: color.adjust(#68c200, $lightness: -15);
-  $error: color.adjust(#f4001e, $lightness: -15);
-  $disabled: color.adjust(#ccc, $lightness: -15);
+  @function adjust-lightness($color, $lightness) {
+    @return color.adjust($color, $lightness: $lightness);
+  }
+
+  $accent: adjust-lightness(#e01563, -15%);
+  $success: adjust-lightness(#68c200, -15%);
+  $error: adjust-lightness(#f4001e, -15%);
+  $disabled: adjust-ligthness(#ccc, -15%);
 
   // The Slack logo has to have white background,
   // so we'll add it since the main background
@@ -35,19 +39,19 @@ html.theme-dark {
     // $color-text:
     $foreground,
     // $color-plus-sign:
-    color.adjust($foreground, $lightness: -60),
+    color.adjust($foreground, $lightness: -60%),
     // $color-footer:
-    color.adjust($foreground, $lightness: -60),
+    color.adjust($foreground, $lightness: -60%),
     // $color-footer-link:
-    color.adjust($foreground, $lightness: -40),
+    color.adjust($foreground, $lightness: -40%),
     // $color-signin:
-    color.adjust($foreground, $lightness: -20),
+    color.adjust($foreground, $lightness: -20%),
     // $color-signin-link:
     $accent,
     // $color-coc:
-    color.adjust($foreground, $lightness: -20),
+    color.adjust($foreground, $lightness: -20%),
     // $color-coc-link:
-    color.adjust($foreground, $lightness: -20),
+    color.adjust($foreground, $lightness: -20%),
     // $color-button-text:
     $button-text,
     // $color-button-background:
@@ -63,7 +67,7 @@ html.theme-dark {
     // $color-button-pressed-text:
     $button-text,
     // $color-button-pressed-background:
-    color.adjust($accent, $lightness: -10),
+    color.adjust($accent, $lightness: -10%),
     // $color-button-disabled-text:
     $button-text-disabled,
     // $color-button-disabled-background:
@@ -73,12 +77,12 @@ html.theme-dark {
     // $color-users-total:
     $foreground,
     // $color-input-text:
-    color.adjust($foreground, $lightness: -40),
+    color.adjust($foreground, $lightness: -40%),
     // $color-input-border:
-    color.adjust($foreground, $lightness: -60),
+    color.adjust($foreground, $lightness: -60%),
     // $color-input-focused-text:
-    color.adjust($foreground, $lightness: -20),
+    color.adjust($foreground, $lightness: -20%),
     // $color-input-focused-border:
-    color.adjust($foreground, $lightness: -40)
+    color.adjust($foreground, $lightness: -40%)
   );
 }
