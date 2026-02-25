@@ -17,7 +17,8 @@ button.classList.remove('loading');
 function submitForm(ev) {
   if (ev) ev.preventDefault();
   button.disabled = true;
-  button.classList.remove('loading', 'error')
+  button.classList.remove('loading');
+  button.classList.remove('error');
   button.classList.remove('success');
   button.textContent = 'Please Wait';
   var gcaptcha_response = form.elements['g-recaptcha-response'];
@@ -49,7 +50,7 @@ function invite(chan, coc, email, gcaptcha_response_value, fn) {
       'g-recaptcha-response': gcaptcha_response_value,
       coc: coc,
       channel: chan,
-      email: email,
+      email: email
     })
     .end(function (res) {
       if (res && res.response) {
