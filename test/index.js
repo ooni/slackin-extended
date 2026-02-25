@@ -1,6 +1,6 @@
 'use strict';
 
-const process = require('process');
+const process = require('node:process');
 const nock = require('nock');
 const request = require('supertest');
 const slackin = require('../lib');
@@ -16,16 +16,16 @@ describe('slackin', () => {
         .reply(200, {
           ok: true,
           members: [{}],
-          response_metadata: { next_cursor: '' },
+          response_metadata: {next_cursor: ''},
         });
 
       nock('https://myorg.slack.com')
         .get('/api/users.list')
-        .query({ token: 'mytoken', limit: 800, cursor: '' })
+        .query({token: 'mytoken', limit: 800, cursor: ''})
         .reply(200, {
           ok: true,
           members: [{}],
-          response_metadata: { next_cursor: '' },
+          response_metadata: {next_cursor: ''},
         });
 
       nock('https://myorg.slack.com')
@@ -39,26 +39,26 @@ describe('slackin', () => {
         .get('/api/team.info?token=mytoken')
         .reply(200, {
           ok: true,
-          team: { icon: {} },
+          team: {icon: {}},
         });
     });
 
-    it('returns success for a successful invite', (done) => {
+    it('returns success for a successful invite', done => {
       const opts = {
         token: 'mytoken',
         org: 'myorg',
       };
 
-      // TODO simplify mocking
+      // TODO simplify mocking.
       nock(`https://${opts.org}.slack.com`)
         .post('/api/users.admin.invite')
-        .reply(200, { ok: true });
+        .reply(200, {ok: true});
 
       const app = slackin(opts);
 
       request(app)
         .post('/invite')
-        .send({ email: 'foo@example.com' })
+        .send({email: 'foo@example.com'})
         .expect('Content-Type', /json/)
         .expect(200, {
           msg: 'WOOT. Check your email!',
@@ -67,13 +67,13 @@ describe('slackin', () => {
         .end(done);
     });
 
-    it('returns a failure for a failure message', (done) => {
+    it('returns a failure for a failure message', done => {
       const opts = {
         token: 'mytoken',
         org: 'myorg',
       };
 
-      // TODO simplify mocking
+      // TODO simplify mocking.
       nock(`https://${opts.org}.slack.com`)
         .post('/api/users.admin.invite')
         .reply(200, {
@@ -85,7 +85,7 @@ describe('slackin', () => {
 
       request(app)
         .post('/invite')
-        .send({ email: 'foo@example.com' })
+        .send({email: 'foo@example.com'})
         .expect('Content-Type', /json/)
         .expect(400, {
           msg: 'other error',
@@ -107,16 +107,16 @@ describe('slackin', () => {
         .reply(200, {
           ok: true,
           members: [{}],
-          response_metadata: { next_cursor: '' },
+          response_metadata: {next_cursor: ''},
         });
 
       nock('https://myorg.slack.com')
         .get('/api/users.list')
-        .query({ token: 'mytoken' })
+        .query({token: 'mytoken'})
         .reply(200, {
           ok: true,
           members: [{}],
-          response_metadata: { next_cursor: '' },
+          response_metadata: {next_cursor: ''},
         });
 
       nock('https://myorg.slack.com')
@@ -130,11 +130,11 @@ describe('slackin', () => {
         .get('/api/team.info?token=mytoken')
         .reply(200, {
           ok: true,
-          team: { icon: {} },
+          team: {icon: {}},
         });
     });
 
-    it('returns the contents of the letsencrypt token', (done) => {
+    it('returns the contents of the letsencrypt token', done => {
       const opts = {
         token: 'mytoken',
         org: 'myorg',
