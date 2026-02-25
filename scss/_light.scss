@@ -1,4 +1,5 @@
-@import "mixin";
+@use "sass:color";
+@use "mixin";
 
 // While every color in the theme mixin is customizable,
 // we can build a theme from just a few.
@@ -16,7 +17,7 @@ html.theme-light {
   $error: #f4001e;
   $disabled: #ccc;
 
-  @include theme(
+  @include mixin.theme(
     // $color-background:
     $background,
     // $iframe-background:
@@ -24,19 +25,19 @@ html.theme-light {
     // $color-text:
     $foreground,
     // $color-plus-sign:
-    lighten($foreground, 80),
+    color.adjust($foreground, $lightness: 80),
     // $color-footer:
-    lighten($foreground, 80),
+    color.adjust($foreground, $lightness: 80),
     // $color-footer-link:
-    lighten($foreground, 60),
+    color.adjust($foreground, $lightness: 60),
     // $color-signin
     $foreground,
     // $color-signin-link:
     $accent,
     // $color-coc:
-    lighten($foreground, 40),
+    color.adjust($foreground, $lightness: 40),
     // $color-coc-link:
-    lighten($foreground, 40),
+    color.adjust($foreground, $lightness: 40),
     // $color-button-text:
     $button-text,
     // $color-button-background:
@@ -52,7 +53,7 @@ html.theme-light {
     // $color-button-pressed-text:
     $button-text,
     // $color-button-pressed-background:
-    darken($accent, 15),
+    color.adjust($accent, $lightness: -15),
     // $color-button-disabled-text:
     $button-text-disabled,
     // $color-button-disabled-background:
@@ -62,12 +63,12 @@ html.theme-light {
     // $color-users-total:
     $foreground,
     // $color-input-text:
-    lighten($foreground, 60),
+    color.adjust($foreground, $lightness: 60),
     // $color-input-border:
-    lighten($foreground, 80),
+    color.adjust($foreground, $lightness: 80),
     // $color-input-focused-text:
-    lighten($foreground, 40),
+    color.adjust($foreground, $lightness: 40),
     // $color-input-focused-border:
-    lighten($foreground, 60)
+    color.adjust($foreground, $lightness: 60)
   );
 }
