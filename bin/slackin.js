@@ -60,8 +60,8 @@ flags.proxy = Boolean(process.env.SLACKIN_PROXY);
 flags.redirectFQDN = process.env.SLACKIN_HTTPS_REDIRECT;
 flags.letsencrypt = process.env.SLACKIN_LETSENCRYPT;
 
-const {port, hostname} = flags;
-slackin(flags).listen(port, hostname, err => {
+const { port, hostname } = flags;
+slackin(flags).listen(port, hostname, (err) => {
   if (err) throw err;
   if (!flags.silent) mainLog.enabled = true;
   mainLog('Listening on %s:%d', hostname, port);
