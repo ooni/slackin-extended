@@ -3,7 +3,8 @@ const xoConfig = [
   {
     space: true,
     rules: {
-      'arrow-parens': [
+      'arrow-parens': 'off',
+      '@stylistic/arrow-parens': [
         'error',
         'always',
       ],
@@ -15,7 +16,8 @@ const xoConfig = [
         'multi-line',
       ],
       'import/extensions': 'off',
-      'object-curly-spacing': [
+      'object-curly-spacing': 'off',
+      '@stylistic/object-curly-spacing': [
         'error',
         'always',
       ],
@@ -30,7 +32,8 @@ const xoConfig = [
       'unicorn/numeric-separators-style': 'off',
       'unicorn/prefer-module': 'off',
       'unicorn/prevent-abbreviations': 'off',
-      'wrap-iife': [
+      'wrap-iife': 'off',
+      '@stylistic/wrap-iife': [
         'error',
         'outside',
       ],
