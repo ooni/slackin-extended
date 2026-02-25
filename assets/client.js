@@ -17,9 +17,7 @@ button.classList.remove('loading');
 function submitForm(ev) {
   if (ev) ev.preventDefault();
   button.disabled = true;
-  button.classList.remove('loading');
-  button.classList.remove('error');
-  button.classList.remove('success');
+  button.classList.remove('loading', 'error', 'success');
   button.textContent = 'Please Wait';
   var gcaptcha_response = form.elements['g-recaptcha-response'];
   var gcaptcha_token = gcaptcha_response ? gcaptcha_response.value : '';
