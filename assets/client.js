@@ -48,7 +48,7 @@ function invite(chan, coc, email, gcaptcha_response_value, fn) {
       'g-recaptcha-response': gcaptcha_response_value,
       coc: coc,
       channel: chan,
-      email: email
+      email: email,
     })
     .end(function (res) {
       if (res && res.response) {
@@ -73,7 +73,7 @@ function invite(chan, coc, email, gcaptcha_response_value, fn) {
 var url = document.createElement('a');
 url.href = globalThis.location;
 // realtime updates
-var socket = io({path: data.path + 'socket.io'});
+var socket = io({ path: data.path + 'socket.io' });
 socket.on('data', function (users) {
   for (var i in users) {
     if (Object.hasOwn(users, i)) {
