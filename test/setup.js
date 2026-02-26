@@ -1,6 +1,4 @@
-'use strict';
-
-const nock = require('nock');
+import nock from 'nock';
 
 nock.disableNetConnect();
 // Allow localhost connections so we can test local routes and mock servers.

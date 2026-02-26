@@ -15,6 +15,7 @@ const xoConfig = [
         'error',
         'multi-line',
       ],
+      'import-x/extensions': 'off',
       'import/extensions': 'off',
       'object-curly-spacing': 'off',
       '@stylistic/object-curly-spacing': [
