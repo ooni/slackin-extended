@@ -1,5 +1,6 @@
 /* globals data:false, grecaptcha:false, io:false, superagent:false */
 /* eslint-disable no-implicit-globals */
+/* eslint-disable @stylistic/comma-dangle */
 
 var body = document.body;
 var request = superagent;
@@ -49,7 +50,7 @@ function invite(chan, coc, email, gcaptcha_response_value, fn) {
       'g-recaptcha-response': gcaptcha_response_value,
       coc: coc,
       channel: chan,
-      email: email,
+      email: email
     })
     .end(function (res) {
       if (res && res.response) {
