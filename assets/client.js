@@ -1,4 +1,5 @@
 /* globals data:false, grecaptcha:false, io:false, superagent:false */
+/* eslint-disable no-implicit-globals */
 
 var body = document.body;
 var request = superagent;
