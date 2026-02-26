@@ -1,29 +1,27 @@
 /* globals data:false, grecaptcha:false, io:false, superagent:false */
 /* eslint-disable no-implicit-globals */
 /* eslint-disable @stylistic/comma-dangle */
-
 var body = document.body;
 var request = superagent;
-
 // elements
 var form = body.querySelector('form#invite');
 var channel = form.elements.channel || {};
 var email = form.elements.email;
 var coc = form.elements.coc;
 var button = body.querySelector('button');
-
 // remove loading state
 button.classList.remove('loading');
-
 // capture submit
 function submitForm(ev) {
-  if (ev) ev.preventDefault();
+  if (ev) {
+    ev.preventDefault();
+  }
+
   button.disabled = true;
   button.classList.remove('loading', 'error', 'success');
   button.textContent = 'Please Wait';
   var gcaptcha_response = form.elements['g-recaptcha-response'];
   var gcaptcha_token = gcaptcha_response ? gcaptcha_response.value : '';
-
   if (!gcaptcha_token && document.getElementById('h-captcha')) {
     return grecaptcha.execute();
   }
@@ -41,7 +39,6 @@ function submitForm(ev) {
 }
 
 body.addEventListener('submit', submitForm);
-
 // eslint-disable-next-line max-params
 function invite(chan, coc, email, gcaptcha_response_value, fn) {
   request
@@ -89,7 +86,6 @@ socket.on('total', function (n) {
 socket.on('active', function (n) {
   update('active', n);
 });
-
 function update(val, n) {
   var el = document.querySelector('.' + val);
   if (el && el.textContent !== n) {
@@ -99,7 +95,10 @@ function update(val, n) {
 }
 
 function anim(el) {
-  if (el.anim) return;
+  if (el.anim) {
+    return;
+  }
+
   el.classList.add('grow');
   el.anim = setTimeout(function () {
     el.classList.remove('grow');
@@ -109,8 +108,11 @@ function anim(el) {
 
 // redirect, using "RPC" to parent if necessary
 function topLevelRedirect(url) {
-  if (globalThis === window.top) globalThis.location.href = url;
-  else window.parent.postMessage('slackin-redirect:' + id + ':' + url, '*');
+  if (globalThis === window.top) {
+    globalThis.location.href = url;
+  } else {
+    window.parent.postMessage('slackin-redirect:' + id + ':' + url, '*');
+  }
   // Q: Why can't we just `top.location.href = url;`?
   // A:
   // [sandboxing]: http://www.html5rocks.com/en/tutorials/security/sandboxed-iframes/
@@ -126,7 +128,6 @@ window.addEventListener('message', function onmsg(e) {
     window.removeEventListener('message', onmsg);
   }
 });
-
 body.addEventListener('load', function () {
   if (globalThis.location.hash) {
     body.querySelector('select[name=channel]').value = globalThis.location.hash.slice(1);

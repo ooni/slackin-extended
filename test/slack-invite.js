@@ -1,13 +1,10 @@
-'use strict';
-
-const assert = require('node:assert');
-const nock = require('nock');
-const invite = require('../lib/slack-invite');
+import assert from 'node:assert';
+import nock from 'nock';
+import invite from '../lib/slack-invite.js';
 
 describe('slack-invite', () => {
   describe('.invite()', () => {
     let opts;
-
     before(() => {
       opts = {
         channel: 'mychannel',
@@ -16,18 +13,15 @@ describe('slack-invite', () => {
         token: 'mytoken',
       };
     });
-
     it('succeeds when ok', (done) => {
       nock(`https://${opts.org}.slack.com`)
         .post('/api/users.admin.invite')
         .reply(200, { ok: true });
-
       invite(opts, (err) => {
         assert.strictEqual(err, null);
         done();
       });
     });
-
     it('passes along an error message', (done) => {
       nock(`https://${opts.org}.slack.com`)
         .post('/api/users.admin.invite')
@@ -35,7 +29,6 @@ describe('slack-invite', () => {
           ok: false,
           error: 'other error',
         });
-
       invite(opts, (err) => {
         assert.notStrictEqual(err, null);
         assert.strictEqual(err.message, 'other error');

@@ -1,5 +1,4 @@
 /* globals io:false, data:false */
-
 (function () {
   // give up and resort to `target=_blank`
   // if we're not modern enough
@@ -11,7 +10,6 @@
 
   // the id for the script we capture
   var id;
-
   // listen on setup event from the parent
   // to set up the id
   window.addEventListener('message', function onmsg(e) {
@@ -19,19 +17,20 @@
       id = e.data.replace(/^slackin:/, '');
       document.body.addEventListener('click', function (ev) {
         var el = ev.target;
-        while (el && el.nodeName !== 'A') el = el.parentNode;
+        while (el && el.nodeName !== 'A') {
+          el = el.parentNode;
+        }
+
         if (el && el.target === '_blank') {
           ev.preventDefault();
           window.parent.postMessage('slackin-click:' + id, '*');
         }
       });
       window.removeEventListener('message', onmsg);
-
       // notify initial width
       refresh();
     }
   });
-
   // notify parent about current width
   var button = document.querySelector('.slack-button');
   var lastWidth;
@@ -54,7 +53,6 @@
     url.href = globalThis.location;
     var socket = io({ path: data.path + 'socket.io' });
     var count = document.querySelector('.slack-count');
-
     socket.on('data', function (users) {
       for (var i in users) {
         if (Object.hasOwn(users, i)) {
@@ -68,16 +66,27 @@
     socket.on('active', function (n) {
       update('active', n);
     });
-
     var anim;
     function update(key, n) {
       if (data[key] !== n) {
         data[key] = n;
         var str = '';
-        if (data.active) str = data.active + '/';
-        if (data.total) str += data.total;
-        if (!str.length) str = '–';
-        if (anim) clearTimeout(anim);
+        if (data.active) {
+          str = data.active + '/';
+        }
+
+        if (data.total) {
+          str += data.total;
+        }
+
+        if (!str.length) {
+          str = '–';
+        }
+
+        if (anim) {
+          clearTimeout(anim);
+        }
+
         count.textContent = str;
         count.classList.add('anim');
         anim = setTimeout(function () {

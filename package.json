@@ -37,7 +37,7 @@
     "resolve-pkg": "^3.0.1",
     "sass": "^1.60.0",
     "serve-favicon": "^2.5.0",
-    "socket.io": "^4.6.1",
+    "socket.io": "^4.8.3",
     "superagent": "^10.3.0",
     "tinycolor2": "^1.6.0"
   },

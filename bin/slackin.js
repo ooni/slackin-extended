@@ -1,17 +1,13 @@
 #!/usr/bin/env node
+import process from 'node:process';
+import args from 'args';
+import * as hostenv from 'hostenv';
+import * as dbg from 'debug';
+import { config } from 'dotenv';
+import slackin from '../lib/index.js';
 
-'use strict';
-
-const process = require('node:process');
-const args = require('args');
-const hostenv = require('hostenv');
-const dbg = require('debug');
-const slackin = require('../lib');
-
-require('dotenv').config();
-
+config();
 const mainLog = dbg('slackin:main');
-
 args
   .option(['p', 'port'], 'Port to listen on', process.env.SLACKIN_PORT || hostenv.PORT || 3000)
   .option(['h', 'hostname'], 'Hostname to listen on', process.env.SLACKIN_HOSTNAME || hostenv.HOSTNAME || '0.0.0.0')
@@ -30,16 +26,13 @@ args
   .option(['C', 'coc'], 'Full URL to a CoC that needs to be agreed to', process.env.SLACKIN_COC)
   .option(['S', 'css'], 'Full URL to a custom CSS file to use on the main page', process.env.SLACKIN_CSS)
   .option(['?', 'help'], 'Show the usage information');
-
 const flags = args.parse(process.argv, {
   value: '<team-id> <api-token>',
   help: false,
 });
-
 // Required arguments
 const org = args.sub[0] || process.env.SLACK_SUBDOMAIN;
 const token = args.sub[1] || process.env.SLACK_API_TOKEN;
-
 if (flags.help || !org || !token) {
   args.showHelp();
 } else {
@@ -53,16 +46,20 @@ flags.recaptcha = {
   sitekey: flags.recaptchaSitekey,
   invisible: Boolean(flags.recaptchaInvisible),
 };
-
 // Advanced parameters (env-only)
 flags.pageDelay = process.env.SLACKIN_PAGE_DELAY;
 flags.proxy = Boolean(process.env.SLACKIN_PROXY);
 flags.redirectFQDN = process.env.SLACKIN_HTTPS_REDIRECT;
 flags.letsencrypt = process.env.SLACKIN_LETSENCRYPT;
-
 const { port, hostname } = flags;
 slackin(flags).listen(port, hostname, (err) => {
-  if (err) throw err;
-  if (!flags.silent) mainLog.enabled = true;
+  if (err) {
+    throw err;
+  }
+
+  if (!flags.silent) {
+    mainLog.enabled = true;
+  }
+
   mainLog('Listening on %s:%d', hostname, port);
 });
