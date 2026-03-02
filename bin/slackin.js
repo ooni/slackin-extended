@@ -2,12 +2,12 @@
 import process from 'node:process';
 import args from 'args';
 import * as hostenv from 'hostenv';
-import * as dbg from 'debug';
+import createDebug from 'debug';
 import { config } from 'dotenv';
 import slackin from '../lib/index.js';
 
 config();
-const mainLog = dbg('slackin:main');
+const mainLog = createDebug('slackin:main');
 args
   .option(['p', 'port'], 'Port to listen on', process.env.SLACKIN_PORT || hostenv.PORT || 3000)
   .option(['h', 'hostname'], 'Hostname to listen on', process.env.SLACKIN_HOSTNAME || hostenv.HOSTNAME || '0.0.0.0')
